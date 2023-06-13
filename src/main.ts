@@ -12,6 +12,6 @@ async function bootstrap() {
   });
   // app.useGlobalGuards(new RoleGuard());
 
-  await app.listen(3000);
+  await app.listen(5050);
 }
 bootstrap();

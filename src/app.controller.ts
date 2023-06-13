@@ -26,6 +26,9 @@ import { Request } from 'express';
 import { Auth } from './decorator/decorator.decorator';
 import { CombineDesc } from './decorator/combine-desc.decorator';
 import { MyHeader } from './decorator/param-desc.decorator';
+import { InjectEntityManager } from '@nestjs/typeorm';
+import { EntityManager } from 'typeorm';
+import { User } from './entities/user.module';
 
 @Controller()
 @SetMetadata('role', 'aa')
@@ -35,8 +38,11 @@ export class AppController implements OnModuleInit, OnApplicationBootstrap {
     private readonly appService: AppService,
     @Inject('person') private readonly person: { name: string; age: number },
     @Inject('bbb') private readonly bbb: { age: number; appService: string },
+
     private readonly bbbService: BbbService,
     private cccService: CccService,
+    @InjectEntityManager()
+    private manager: EntityManager,
   ) {}
 
   @UseInterceptors(LoggerInterceptor)
@@ -73,6 +79,20 @@ export class AppController implements OnModuleInit, OnApplicationBootstrap {
     return this.appService.getHello() + 'getDetail' + ide;
   }
 
+  @Get('/findAll')
+  @Auth('admin')
+  findAll() {
+    return this.manager.find(User);
+  }
+
+  @Get('/findOne/:id')
+  @Auth('admin')
+  findOne(@Param('id') id: number) {
+    return this.manager.findOne(User, {
+      where: { id },
+    });
+  }
+
   @Get('/ip')
   @Auth('admin')
   getIp(
@@ -89,6 +109,7 @@ export class AppController implements OnModuleInit, OnApplicationBootstrap {
     return ip;
   }
 
+  @Get()
   onApplicationBootstrap(): any {
     console.log('-> 应用加载完成');
   }

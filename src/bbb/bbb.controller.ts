@@ -10,11 +10,16 @@ import {
 import { BbbService } from './bbb.service';
 import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from '../entities/user.module';
 
 @Controller('bbb')
 export class BbbController {
   constructor(private readonly bbbService: BbbService) {}
 
+  @InjectRepository(User)
+  private userRepository: Repository<User>;
   @Post()
   create(@Body() createBbbDto: CreateBbbDto) {
     return this.bbbService.create(createBbbDto);
@@ -23,6 +28,11 @@ export class BbbController {
   @Get()
   findAll() {
     return this.bbbService.findAll();
+  }
+
+  @Get('/user')
+  findUser() {
+    return this.userRepository.find();
   }
 
   @Get(':id')
