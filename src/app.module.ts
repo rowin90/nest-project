@@ -7,6 +7,7 @@ import { CccModule } from './ccc/ccc.module';
 import { MiMiddleware } from './middleware/mi.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.module';
+import { createClient } from 'redis';
 
 @Module({
   imports: [
@@ -32,6 +33,19 @@ import { User } from './entities/user.module';
   controllers: [AppController],
   providers: [
     AppService,
+    {
+      provide: 'REDIS_CLIENT',
+      async useFactory() {
+        const client = createClient({
+          socket: {
+            host: 'localhost',
+            port: 6379,
+          },
+        });
+        await client.connect();
+        return client;
+      },
+    },
     {
       provide: 'person',
       useFactory() {

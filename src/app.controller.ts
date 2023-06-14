@@ -29,6 +29,7 @@ import { MyHeader } from './decorator/param-desc.decorator';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { EntityManager } from 'typeorm';
 import { User } from './entities/user.module';
+import { RedisClientType } from 'redis';
 
 @Controller()
 @SetMetadata('role', 'aa')
@@ -45,6 +46,9 @@ export class AppController implements OnModuleInit, OnApplicationBootstrap {
     private manager: EntityManager,
   ) {}
 
+  @Inject('REDIS_CLIENT')
+  private redisClient: RedisClientType;
+
   @UseInterceptors(LoggerInterceptor)
   @Get()
   getHello(): string {
@@ -55,6 +59,13 @@ export class AppController implements OnModuleInit, OnApplicationBootstrap {
     console.log('-> this.cssService.findAll()', this.cccService.findOne(2));
 
     return this.appService.getHello();
+  }
+
+  @Get('/redis')
+  @Auth('admin')
+  async getRedis() {
+    const value = await this.redisClient.keys('*');
+    return value;
   }
 
   @Get('/id/:id')
