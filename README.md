@@ -26,6 +26,7 @@
   - permission.guard 守卫
 - acl-a ,acl-b 测试权限模块
 - entities/db2 
+- redis缓存权限内容
 
 #### 思路：
 - user module 用于权限的校验，分为2个部分
