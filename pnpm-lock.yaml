@@ -25,9 +25,6 @@ dependencies:
   class-validator:
     specifier: ^0.14.0
     version: 0.14.0
-  common:
-    specifier: link:@types/@nestjs/common
-    version: link:@types/@nestjs/common
   express-session:
     specifier: ^1.17.3
     version: 1.17.3

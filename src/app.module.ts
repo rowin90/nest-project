@@ -11,6 +11,7 @@ import { createClient } from 'redis';
 import { UserModule } from './user/user.module';
 import { AclAModule } from './acl_a/acl_a.module';
 import { AclBModule } from './acl_b/acl_b.module';
+import { RedisModule } from './redis/redis.module';
 console.log('databaseConfig : ', databaseConfig);
 
 @Module({
@@ -22,6 +23,7 @@ console.log('databaseConfig : ', databaseConfig);
     UserModule,
     AclAModule,
     AclBModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [
