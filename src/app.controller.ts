@@ -28,7 +28,7 @@ import { CombineDesc } from './decorator/combine-desc.decorator';
 import { MyHeader } from './decorator/param-desc.decorator';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { EntityManager } from 'typeorm';
-import { User } from './entities/user.module';
+import { User } from './entities/db1/user.module';
 import { RedisClientType } from 'redis';
 
 @Controller()

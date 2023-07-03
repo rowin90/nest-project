@@ -12,7 +12,7 @@ import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../entities/user.module';
+import { User } from '../entities/db1/user.module';
 
 @Controller('bbb')
 export class BbbController {

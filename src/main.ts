@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import * as session from 'express-session';
+import { ValidationPipe } from '@nestjs/common';
 import { RoleGuard } from './guard/role.guard';
 
 async function bootstrap() {
@@ -10,6 +12,14 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'), {
     prefix: './static',
   });
+  app.use(
+    session({
+      secret: 'guang',
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
+  app.useGlobalPipes(new ValidationPipe());
   // app.useGlobalGuards(new RoleGuard());
 
   await app.listen(5050);
