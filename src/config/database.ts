@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-let isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 export const databaseConfig: {
   [key: string]: TypeOrmModuleOptions;
 } = {
