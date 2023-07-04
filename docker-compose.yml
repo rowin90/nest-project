@@ -8,6 +8,8 @@ services:
       - redis-container
     ports:
       - '5050:5050'
+    environment:
+      - NODE_ENV='production'
   mysql-container:
     image: mysql
     ports:

@@ -1,11 +1,12 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+let isDev = process.env.NODE_ENV === 'development';
 export const databaseConfig: {
   [key: string]: TypeOrmModuleOptions;
 } = {
   db1: {
     type: 'mysql',
-    host: '192.168.30.42',
+    host: isDev ? 'localhost' : 'mysql-container',
     port: 3306,
     username: 'root',
     password: 'guang',
@@ -24,7 +25,7 @@ export const databaseConfig: {
   // ACL权限
   db2: {
     type: 'mysql',
-    host: '192.168.30.42',
+    host: isDev ? 'localhost' : 'mysql-container',
     port: 3306,
     username: 'root',
     password: 'guang',
@@ -38,17 +39,13 @@ export const databaseConfig: {
     //   authPlugin: 'sha256_password',
     // },
   },
-  redis: {
-    host: '192.168.30.42',
-    port: 6379,
-  },
 };
 
 export const redisConfig: {
   [key: string]: any;
 } = {
   redis: {
-    host: '192.168.30.42',
+    host: isDev ? 'localhost' : 'redis-container',
     port: 6379,
   },
 };
