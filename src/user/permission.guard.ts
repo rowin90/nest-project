@@ -32,11 +32,6 @@ export class PermissionGuard implements CanActivate {
     let permissions = await this.redisService.listGet(
       `user_${user.username}_permissions`,
     );
-    console.log('permissions : ', permissions);
-    console.log(
-      'user_${user.username}_permissions : ',
-      await this.userService.findByUsername(user.username),
-    );
     debugger;
     if (permissions.length === 0) {
       const foundUser = await this.userService.findByUsername(user.username);

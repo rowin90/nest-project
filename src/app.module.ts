@@ -12,7 +12,6 @@ import { UserModule } from './user/user.module';
 import { AclAModule } from './acl_a/acl_a.module';
 import { AclBModule } from './acl_b/acl_b.module';
 import { RedisModule } from './redis/redis.module';
-console.log('databaseConfig : ', databaseConfig);
 
 @Module({
   imports: [
@@ -28,19 +27,6 @@ console.log('databaseConfig : ', databaseConfig);
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: 'REDIS_CLIENT',
-      async useFactory() {
-        const client = createClient({
-          socket: {
-            host: 'localhost',
-            port: 6379,
-          },
-        });
-        await client.connect();
-        return client;
-      },
-    },
     {
       provide: 'person',
       useFactory() {

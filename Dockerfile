@@ -25,6 +25,6 @@ RUN npm config set registry 'https://registry.npmmirror.com/'
 RUN npm install
 RUN npm install pm2 -g
 
-EXPOSE 3000
+EXPOSE 5050
 
 CMD [ "pm2-runtime", "/app/main.js" ]

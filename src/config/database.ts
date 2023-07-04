@@ -5,7 +5,7 @@ export const databaseConfig: {
 } = {
   db1: {
     type: 'mysql',
-    host: 'localhost',
+    host: '192.168.30.42',
     port: 3306,
     username: 'root',
     password: 'guang',
@@ -24,7 +24,7 @@ export const databaseConfig: {
   // ACL权限
   db2: {
     type: 'mysql',
-    host: 'localhost',
+    host: '192.168.30.42',
     port: 3306,
     username: 'root',
     password: 'guang',
@@ -37,5 +37,18 @@ export const databaseConfig: {
     // extra: {
     //   authPlugin: 'sha256_password',
     // },
+  },
+  redis: {
+    host: '192.168.30.42',
+    port: 6379,
+  },
+};
+
+export const redisConfig: {
+  [key: string]: any;
+} = {
+  redis: {
+    host: '192.168.30.42',
+    port: 6379,
   },
 };
