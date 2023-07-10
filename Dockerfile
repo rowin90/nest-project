@@ -1,5 +1,5 @@
 # build stage
-FROM node:18 as build-stage
+FROM node:18-alpine3.14 as build-stage
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ COPY --from=build-stage /app/package.json /app/package.json
 WORKDIR /app
 
 RUN npm config set registry 'https://registry.npmmirror.com/'
-RUN npm install
+RUN npm install --production
 RUN npm install pm2 -g
 
 EXPOSE 5050
