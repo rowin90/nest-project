@@ -2,6 +2,13 @@
 1. 包含了 guard middleware filter decorator interceptor 基础写法
 2. 代码用 nest-cli 生成，如新增 guard，使用 nest g guard xxx 。可以使用 nest g -h 看可以帮助文档
 
+# 第三方服务
+### redis
+### mysql
+- sql
+  + acl-test 权限数据
+  + hello-mysql 基础数据
+
 
 # 功能
 

@@ -5,6 +5,7 @@ import { join } from 'path';
 import * as session from 'express-session';
 import { ValidationPipe } from '@nestjs/common';
 import { RoleGuard } from './guard/role.guard';
+import { PermissionGuard } from './user/permission.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -21,6 +22,7 @@ async function bootstrap() {
   );
   app.useGlobalPipes(new ValidationPipe());
   // app.useGlobalGuards(new RoleGuard());
+  // app.useGlobalGuards(new PermissionGuard());
 
   await app.listen(5050);
 }
